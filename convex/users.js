@@ -32,7 +32,7 @@ export const store = mutation({
       email: identity.email,
       imageUrl: identity.pictureUrl,
       plan: "free", // Default plan
-      projectsUsed: 0, // Initialize usage counters
+      projectsUsed: 0, 
       exportsThisMonth: 0,
       createdAt: Date.now(),
       lastActiveAt: Date.now(),
