@@ -1,16 +1,5 @@
-'use client'
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { ChevronRight, Sparkles, Zap, Brain, Eye, Layers, Check, Star } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
-import Image from "next/image";
-import HeroSection from  "../components/hero";
-import AnimatedCounter from "@/components/stats";
-import PricingCard from "@/components/pricing";
-import FloatingShapes from '@/components/FloatingShapes';
-import FeatureCard from '@/components/features';
-import useIntersectionObserver from '@/hooks/useIntersectionObserver';
-const Home = () => {
+
+const App = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -61,46 +50,85 @@ const Home = () => {
     }
   ];
 
+  const pricingPlans = [
+    {
+      plan: 'Starter',
+      price: 9,
+      features: [
+        '1,000 AI enhancements/month',
+        'Basic neural filters',
+        'HD export quality',
+        'Community support'
+      ],
+      buttonText: 'Start Creating'
+    },
+    {
+      plan: 'Pro',
+      price: 29,
+      features: [
+        '10,000 AI enhancements/month',
+        'Advanced quantum tools',
+        '4K export quality',
+        'Priority support',
+        'Custom neural training'
+      ],
+      featured: true,
+      buttonText: 'Upgrade to Pro'
+    },
+    {
+      plan: 'Enterprise',
+      price: 99,
+      features: [
+        'Unlimited AI processing',
+        'Custom neural models',
+        '16K export quality',
+        'Dedicated support',
+        'API access',
+        'Team collaboration'
+      ],
+      buttonText: 'Contact Sales'
+    }
+  ];
 
   return (
     <div className="relative">
-      {!isMobile }
+      {!isMobile && <CustomCursor />}
       <FloatingShapes />
       
       <HeroSection />
 
       {/* Stats Section */}
-      <section className="py-24 bg-transparent">
+      <section className="py-24 bg-gradient-to-r from-blue-50 to-purple-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div className="text-center">
               <AnimatedCounter target={2500000} suffix="+" />
-              <p className="text-[#DCD0A8] font-semibold">Images Enhanced</p>
+              <p className="text-gray-600 font-semibold">Images Enhanced</p>
             </div>
             <div className="text-center">
               <AnimatedCounter target={150000} suffix="+" />
-              <p className="text-[#DCD0A8]  font-semibold">Active Creators</p>
+              <p className="text-gray-600 font-semibold">Active Creators</p>
             </div>
             <div className="text-center">
               <AnimatedCounter target={99} suffix="%" />
-              <p className="text-[#DCD0A8]  font-semibold">Satisfaction Rate</p>
+              <p className="text-gray-600 font-semibold">Satisfaction Rate</p>
             </div>
             <div className="text-center">
               <AnimatedCounter target={24} suffix="/7" />
-              <p className="text-[#DCD0A8]  font-semibold">AI Processing</p>
+              <p className="text-gray-600 font-semibold">AI Processing</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-transparent">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-6xl font-black mb-6  bg-gradient-to-r from-[#FED16A] via-[#78B9B5] to-[#F97A00] bg-clip-text text-transparent">
+            <h2 className="text-6xl font-black mb-6 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
               Beyond Imagination
             </h2>
-            <p className="text-xl text-[#DCD0A8] max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Experience the next generation of image editing with tools that think, learn, and create alongside you.
             </p>
           </div>
@@ -113,13 +141,27 @@ const Home = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-24 bg-transparent">
-        <PricingCard/>
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+       <pricingPlan/>
       </section>
 
-    
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h2 className="text-6xl font-black text-white mb-6">
+            Ready to Transcend Reality?
+          </h2>
+          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+            Join thousands of creators who are already shaping the future of visual storytelling with Neural Vision.
+          </p>
+          <button className="group px-12 py-6 bg-white text-blue-600 font-black text-xl rounded-2xl hover:scale-105 transform transition-all duration-300 hover:shadow-2xl">
+            Launch Neural Studio
+            <Sparkles className="inline ml-3 group-hover:rotate-12 transition-transform" />
+          </button>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default Home;
+export default App;
